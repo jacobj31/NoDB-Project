@@ -30,5 +30,13 @@ module.exports = {
         let index = books.findIndex(book => +book.id === +id)
         books.splice(index, 1)
         res.send(books)
+    },
+    edit: (req, res) => {
+        let {id} = req.params
+        let newBook = req.body
+        newBook.id = id
+        let index = books.findIndex(book => +book.id === +id)
+        books.splice(index, 1, newBook)
+        res.send(books)
     }
 }

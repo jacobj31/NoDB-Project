@@ -6,8 +6,7 @@ export default class Header extends Component{
 
         this.state = {
             title:'',
-            author:''
-           
+            author:'',           
         }
     }
     handleChange = e => {
@@ -22,7 +21,7 @@ export default class Header extends Component{
         this.props.addBook(newBook)
         this.setState({
             title:'',
-            author:''
+            author:'',
         })
     }
 
@@ -36,24 +35,14 @@ export default class Header extends Component{
             onChange={this.handleChange}
             value={this.state.title}
             />
-
-
             <input
             type= 'text'
             name= 'author'
             placeholder='author'
             onChange={this.handleChange}
             value={this.state.author}/>
-            <button onClick={this.handleClick}>Add Libro</button>
-            
-            
-            
-            
-            
-            
-            </header>
-
-            
+            <button onClick={this.handleClick}>Add Libro</button>          
+           </header>
         )
     }
 }

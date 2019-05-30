@@ -10,7 +10,7 @@ app.use(express.json())
 
 app.get('/api/books', bookCtrl.read)
 app.post('/api/books', bookCtrl.create)
-
+app.put('/api/books/:id', bookCtrl.edit)
 app.delete('/api/books/:id', bookCtrl.delete)
 
 
