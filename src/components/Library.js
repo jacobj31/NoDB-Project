@@ -18,11 +18,13 @@ export default class Books extends Component {
     }
     addBook = (newBook) => {
         axios.post('/api/books', newBook)
-        .then(response => {
-            this.setState({
-                books: response.data
-            })
-        }).catch(err => console.log('sorry, pal', err))
+        .then(response => {this.setState({books: response.data})})
+        .catch(err => console.log('sorry, pal', err))
+    }
+    deleteBook = id => {
+        axios.delete(`/api/books/${id}`)
+        .then(response => this.setState({books: response.data}))
+        .catch(err => console.log('sorry, pal', err))
     }
 
 
@@ -35,7 +37,8 @@ render(){
                     return(
                         <Book 
                         key = {book.id}
-                        book = {book}/> 
+                        book = {book}
+                        delete = {() => this.deleteBook(book.id)}/> 
                     )
                 })}
             </div>

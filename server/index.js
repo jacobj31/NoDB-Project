@@ -11,6 +11,8 @@ app.use(express.json())
 app.get('/api/books', bookCtrl.read)
 app.post('/api/books', bookCtrl.create)
 
+app.delete('/api/books/:id', bookCtrl.delete)
+
 
 
 

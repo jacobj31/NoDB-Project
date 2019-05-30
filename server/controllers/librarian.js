@@ -1,3 +1,5 @@
+let randomColor = require('randomcolor')
+
 let id = 1
 
 let books = [{
@@ -19,9 +21,14 @@ module.exports = {
     create: (req, res) => {
         let newBook = req.body
         newBook.id = id++
+        newBook.cover = randomColor({luminosity:'bright', hue: 'random'})
         books.push(newBook)
         res.send(books)
-        console.log(req.body)
+    }, 
+    delete: (req, res) => {
+        let {id} = req.params
+        let index = books.findIndex(book => +book.id === +id)
+        books.splice(index, 1)
+        res.send(books)
     }
-
 }
