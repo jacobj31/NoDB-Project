@@ -19,20 +19,27 @@ export default class Form extends Component{
             [name]:value
         })
     }
-    handleClick = () => {
+    handleClick = (e) => {
         let updatedBook = this.state
         updatedBook.id = this.props.book.id
         this.props.edit(updatedBook)
         this.props.toggle()
+        e.preventDefault()
     }
+        handleSubmit = (e) => {
+            e.preventDefault()
+        }
 
     render(){
         return(
             <div>
-            
             <form 
-            class = 'editView' style={{background: this.props.book.cover}}
-            onClick= {(e) => e.stopPropagation()}>
+            class = 'editView' 
+            style={{background: this.props.book.cover}}
+            onClick= {(e) => e.stopPropagation()}
+            >
+
+
             <h1 style = {{color: 'green'}}>hi</h1>
             <input
             type= 'text'
@@ -40,6 +47,7 @@ export default class Form extends Component{
             placeholder='title'
             onChange={this.handleChange}
             value={this.state.title}
+            
             />
             <input
             type= 'text'
@@ -47,6 +55,7 @@ export default class Form extends Component{
             placeholder='author'
             onChange={this.handleChange}
             value={this.state.author}
+          
             />
             <input
             type= 'text'
@@ -54,6 +63,7 @@ export default class Form extends Component{
             placeholder='cover'
             onChange={this.handleChange}
             value={this.state.cover}
+          
             />
             <button onClick = {this.handleClick}>Edit</button>
             <button type = 'button' onClick={this.props.delete}>Delete</button>
