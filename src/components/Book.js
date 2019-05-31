@@ -5,34 +5,39 @@ export default class Book extends Component{
     constructor(props){
         super(props)
 
-        this.state= {
-            bookview : false
+        this.state = {
+            bookview: false,
         }
     }
 
-    toggleBookView = () => {
+    handleMouse = () => {
+        if(this.props.edit === false){
         this.setState({bookview: !this.state.bookview})
-    }
-
+        }
+        
+        }
 
     render(){
         let {book} = this.props
         return(
-        <div 
-        style={{height: '300px', width: '100px', border: '1px solid white', background: book.cover}}>
-               {book.title}
-               {book.author}
+        <div className = 'book'  
+        style = {{background: book.cover, color: book.text}}
+        onClick = {this.props.toggle}
+        onMouseOver = {this.handleMouse}  
+        onMouseOut = {this.handleMouse}  
+        >
+        
+               <h1 className = 'title'>{book.title}</h1>
 
         {this.state.bookview?
         <Bookview
         book = {book}
         edit = {this.props.editBook}
-        toggle = {this.toggleBookView}/>
-        : <div></div>
-    
+        toggle = {this.props.toggle}
+        delete = {this.props.delete}/>
+        : <div></div>    
         }
-        <button onClick={this.props.delete}>Delete</button>
-        <button onClick = {this.toggleBookView}></button>
+        
         </div>)
     }
 }

@@ -4,11 +4,12 @@ export default class Form extends Component{
     constructor(props){
         super(props)
 
-        let {title, author, cover} = props.book
+        let {title, author, cover, text} = props.book
         this.state ={
             title,
             author,
-            cover      
+            cover,
+            text      
         }
     }
 
@@ -23,13 +24,16 @@ export default class Form extends Component{
         updatedBook.id = this.props.book.id
         this.props.edit(updatedBook)
         this.props.toggle()
-        console.log(updatedBook)
-
     }
 
     render(){
         return(
-            <div style={{width:'100px', height: '100px',background:'black'}}>
+            <div>
+            
+            <form 
+            class = 'editView' style={{background: this.props.book.cover}}
+            onClick= {(e) => e.stopPropagation()}>
+            <h1 style = {{color: 'green'}}>hi</h1>
             <input
             type= 'text'
             name= 'title'
@@ -37,7 +41,6 @@ export default class Form extends Component{
             onChange={this.handleChange}
             value={this.state.title}
             />
-
             <input
             type= 'text'
             name= 'author'
@@ -52,9 +55,12 @@ export default class Form extends Component{
             onChange={this.handleChange}
             value={this.state.cover}
             />
-            <button onClick = {this.handleClick}>Make the Change</button>
+            <button onClick = {this.handleClick}>Edit</button>
+            <button type = 'button' onClick={this.props.delete}>Delete</button>
+            </form>
             </div>
         )
     }
 
 }
+//setting type = 'button' stops the autosubmit that comes with buttons on forms :P 

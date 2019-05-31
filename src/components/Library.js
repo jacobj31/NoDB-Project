@@ -9,7 +9,8 @@ export default class Books extends Component {
         super(props)
 
         this.state = {
-            books: []
+            books: [],
+            edit: false
         }
     }
     componentDidMount(){
@@ -26,33 +27,39 @@ export default class Books extends Component {
         axios.delete(`/api/books/${id}`)
         .then(response => this.setState({books: response.data}))
         .catch(err => console.log('sorry, pal', err))
+        this.setState({edit: false})
     }
     editBook = book => {
         axios.put(`/api/books/${book.id}`, book)
         .then(response => this.setState({books: response.data}))
         .catch(err => console.log('sorry, pal', err))
-        
+        this.setState({edit: false})
     }
 
+    toggleEdit = () => {
+        this.setState({edit: !this.state.edit})
+    }
 
 render(){
     return(
-        <div>
+        <div style={{display: 'flex', flexDirection: 'column', height: '100vh', width: '100vw'}}>
             <Header addBook = {this.addBook}/>
-            <body style = {{background: 'tan', height: '100vh', 
-            display:'flex', alignItems:'center', justifyContent: 'center'}}>
-                
-                <div style={{display: 'flex', background:'blue'}}>
-                {this.state.books.map(book=> {
-                    return(
-                        <Book 
-                        key = {book.id}
-                        book = {book}
-                        delete = {() => this.deleteBook(book.id)}
-                        editBook = {this.editBook}/> 
-                    )
-                })}
-               </div>
+            <body>
+                <div className="bookholder">
+                <div style={{display: 'flex'}}>
+                    {this.state.books.map(book=> {
+                        return(
+                            <Book 
+                            key = {book.id}
+                            book = {book}
+                            delete = {() => this.deleteBook(book.id)}
+                            editBook = {this.editBook}
+                            toggle= {this.toggleEdit}
+                            edit = {this.state.edit}
+                            /> )})}        
+                </div> 
+                </div> 
+                <Bookshelf/>
             </body>
         </div>)}
 }

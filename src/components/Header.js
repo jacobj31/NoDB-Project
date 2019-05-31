@@ -27,7 +27,7 @@ export default class Header extends Component{
 
     render(){
         return(
-            <header style={{height:"100px", background:"black", width:"100vw"}}>
+            <header>
             <input
             type= 'text'
             name= 'title'
