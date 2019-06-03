@@ -9,7 +9,8 @@ export default class Form extends Component{
             title,
             author,
             cover,
-            text      
+            text,
+            view: true      
         }
     }
 
@@ -26,48 +27,72 @@ export default class Form extends Component{
         this.props.toggle()
         e.preventDefault()
     }
-        handleSubmit = (e) => {
+    handleSubmit = (e) => {
             e.preventDefault()
+            this.props.toggle()
         }
+    toggleView = (e) => {
+        this.setState({ 
+            view: !this.state.view
+        })
+        e.stopPropagation()
+    }
 
     render(){
+        let {cover, title, author} = this.props.book
         return(
             <div>
+            {this.state.view? 
+            <div className = 'editView'
+            style={{background: cover}}>
+            <h1 style = {{textAlign: 'center', fontSize: '50px'}}>{title}</h1>
+            <p style = {{textAlign: 'center', fontSize: '30px', marginBottom: '150px'}}>{author}</p>
+            
+            <div className = 'buttonHouse'>
+            <div></div>
+            <button className = 'fancy' onClick= {this.toggleView}>Edit</button>
+            </div>
+            </div>
+            
+            :
+            
             <form 
-            class = 'editView' 
+            className = 'editView' 
             style={{background: this.props.book.cover}}
             onClick= {(e) => e.stopPropagation()}
-            >
-
-
-            <h1 style = {{color: 'green'}}>hi</h1>
-            <input
+            onSubmit = {this.handleSubmit}
+            >            
+            <input className = 'add'
             type= 'text'
             name= 'title'
             placeholder='title'
             onChange={this.handleChange}
-            value={this.state.title}
-            
+            value={this.state.title}           
             />
-            <input
+            <input className = 'add'
             type= 'text'
             name= 'author'
             placeholder='author'
             onChange={this.handleChange}
-            value={this.state.author}
-          
+            value={this.state.author}        
             />
-            <input
+            <input className = 'add' style={{marginBottom:'100px', width: '50%'}}
             type= 'text'
             name= 'cover'
             placeholder='cover'
             onChange={this.handleChange}
-            value={this.state.cover}
-          
+            value={this.state.cover}         
             />
-            <button onClick = {this.handleClick}>Edit</button>
-            <button type = 'button' onClick={this.props.delete}>Delete</button>
+            <div className = 'buttonHouse'>
+            <button className = 'fancy' type = 'button' onClick={this.props.delete}>Delete</button>
+            <button className = 'fancy' onClick= {() => this.props.toggle}>Cancel</button>
+            <button className = 'fancy' onClick = {this.handleClick}>Edit</button> 
+            </div>
             </form>
+            }
+            
+            
+            
             </div>
         )
     }

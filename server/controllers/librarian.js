@@ -6,15 +6,15 @@ let books = [{
     id: id++,
     title: "Fablehaven",
     author: "Brandon Mull",
-    cover: "blue", 
-    text: 'silver'   
+    cover: "darkblue", 
+    text: 'gold'   
 },
 {
     id: id++,
     title: "Return of the King",
     author: "J.R.R. Tolkien",
-    cover: "green",
-    text: 'white'
+    cover: "darkred",
+    text: 'gold'
 }
 ]
 
@@ -23,8 +23,8 @@ module.exports = {
     create: (req, res) => {
         let newBook = req.body
         newBook.id = id++
-        newBook.cover = randomColor({luminosity:'random', hue: 'random'})
-        newBook.text = randomColor({luminosity:'light', hue: 'blue'})
+        newBook.cover = randomColor({luminosity:'dark', hue: 'random'})
+        newBook.text = 'gold'
         books.push(newBook)
         res.send(books)
     }, 

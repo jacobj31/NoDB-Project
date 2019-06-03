@@ -7,6 +7,7 @@ export default class Book extends Component{
 
         this.state = {
             bookview: false,
+            editview: false
         }
     }
 
@@ -35,7 +36,7 @@ export default class Book extends Component{
         edit = {this.props.editBook}
         toggle = {this.props.toggle}
         delete = {this.props.delete}/>
-        : <div></div>    
+        : undefined
         }
         
         </div>)

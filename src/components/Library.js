@@ -19,9 +19,10 @@ export default class Books extends Component {
         ).catch(err => console.log('sorry, pal', err))
     }
     addBook = (newBook) => {
+        this.state.books.length < 14 ?
         axios.post('/api/books', newBook)
         .then(response => {this.setState({books: response.data})})
-        .catch(err => console.log('sorry, pal', err))
+        .catch(err => console.log('sorry, pal', err)) : alert('On behalf of all who may help you move someday, please don\'t add another book until you get rid of one.')
     }
     deleteBook = id => {
         axios.delete(`/api/books/${id}`)
@@ -38,16 +39,19 @@ export default class Books extends Component {
 
     toggleEdit = () => {
         this.setState({edit: !this.state.edit})
+        console.log(this.state.edit)
     }
 
 render(){
     return(
-        <div style={{display: 'flex', flexDirection: 'column', height: '100vh', width: '100vw'}}>
+        <body style={{display: 'flex', flexDirection: 'column', height: '100vh', width: '100vw'}}>
             <Header addBook = {this.addBook}/>
-            <body>
+            <div className = 'body'>
                 <div className="bookholder">
                 <div style={{display: 'flex'}}>
-                    {this.state.books.map(book=> {
+                    {
+                    
+                    this.state.books.map(book=> {
                         return(
                             <Book 
                             key = {book.id}
@@ -56,11 +60,13 @@ render(){
                             editBook = {this.editBook}
                             toggle= {this.toggleEdit}
                             edit = {this.state.edit}
-                            /> )})}        
+                            /> )})  
+
+                    }
                 </div> 
                 </div> 
                 <Bookshelf/>
-            </body>
-        </div>)}
+            </div>
+        </body>)}
 }
 
