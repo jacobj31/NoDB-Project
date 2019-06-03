@@ -6,7 +6,7 @@
 
 header{
     height: 130px;
-    background: rgb(139, 139, 139); 
+    background: rgb(99, 99, 99); 
     width: 100vw;
     display: flex;
     align-items: center;
@@ -31,7 +31,7 @@ header{
     align-items: flex-end;
     margin-right:400px;
     margin-top:150px;
-    box-shadow: 40px 30px 5px rgb(12, 12, 12);
+
 }
 
 .shelf{
@@ -53,7 +53,8 @@ header{
     justify-content: center;
     border-radius: 3px;
     font-family: 'UnifrakturCook', cursive;
-    
+    overflow: auto;
+    box-shadow: 40px 30px 5px rgb(12, 12, 12);
    
 }
 

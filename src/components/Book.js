@@ -15,14 +15,22 @@ export default class Book extends Component{
         if(this.props.edit === false){
         this.setState({bookview: !this.state.bookview})
         }
-        
         }
+    
+    getRandomInt(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return (Math.floor(Math.random() * (max - min)) + min) + 'px'; 
+          }
+    
+        
 
     render(){
         let {book} = this.props
+        
         return(
         <div className = 'book'  
-        style = {{background: book.cover, color: book.text}}
+        style = {{background: book.cover, color: book.text, height: book.height}}
         onClick = {this.props.toggle}
         onMouseOver = {this.handleMouse}  
         onMouseOut = {this.handleMouse}  

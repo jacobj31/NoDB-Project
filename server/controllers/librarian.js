@@ -17,6 +17,11 @@ let books = [{
     text: 'gold'
 }
 ]
+ function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return (Math.floor(Math.random() * (max - min)) + min) + 'px'; 
+  }
 
 module.exports = {
     read: (req, res) => res.send(books),
@@ -25,6 +30,7 @@ module.exports = {
         newBook.id = id++
         newBook.cover = randomColor({luminosity:'dark', hue: 'random'})
         newBook.text = 'gold'
+        newBook.height = getRandomInt(300, 501)
         books.push(newBook)
         res.send(books)
     }, 

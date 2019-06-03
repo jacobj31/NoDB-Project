@@ -4,13 +4,14 @@ export default class Form extends Component{
     constructor(props){
         super(props)
 
-        let {title, author, cover, text} = props.book
+        let {title, author, cover, text, height} = props.book
         this.state ={
             title,
             author,
             cover,
             text,
-            view: true      
+            view: true,
+            height      
         }
     }
 
@@ -46,7 +47,7 @@ export default class Form extends Component{
             <div className = 'editView'
             style={{background: cover}}>
             <h1 style = {{textAlign: 'center', fontSize: '50px'}}>{title}</h1>
-            <p style = {{textAlign: 'center', fontSize: '30px', marginBottom: '150px'}}>{author}</p>
+            <p style = {{textAlign: 'center', fontSize: '30px', marginBottom: '180px'}}>{author}</p>
             
             <div className = 'buttonHouse'>
             <div></div>
@@ -81,11 +82,11 @@ export default class Form extends Component{
             name= 'cover'
             placeholder='cover'
             onChange={this.handleChange}
-            value={this.state.cover}         
-            />
+            value={this.state.cover}/>       
+            
             <div className = 'buttonHouse'>
             <button className = 'fancy' type = 'button' onClick={this.props.delete}>Delete</button>
-            <button className = 'fancy' onClick= {() => this.props.toggle}>Cancel</button>
+            <button className = 'fancy' onClick= {() => this.props.toggle}>Abort</button>
             <button className = 'fancy' onClick = {this.handleClick}>Edit</button> 
             </div>
             </form>

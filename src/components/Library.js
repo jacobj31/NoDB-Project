@@ -53,6 +53,7 @@ render(){
                     
                     this.state.books.map(book=> {
                         return(
+                            <div style = {{display: 'flex', alignItems: 'flex-end'}}>
                             <Book 
                             key = {book.id}
                             book = {book}
@@ -60,7 +61,8 @@ render(){
                             editBook = {this.editBook}
                             toggle= {this.toggleEdit}
                             edit = {this.state.edit}
-                            /> )})  
+                            /> 
+                            </div>)})  
 
                     }
                 </div> 
