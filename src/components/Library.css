@@ -14,7 +14,8 @@ header{
     padding-right: 30px;
     color:white;
     font-family: 'UnifrakturCook', cursive;
-    font-size: 30px
+    font-size: 30px;
+    border: .5px solid black
 }
 .body{
     background: rgb(17, 59, 7); 

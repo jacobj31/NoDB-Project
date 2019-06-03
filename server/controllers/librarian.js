@@ -14,7 +14,8 @@ let books = [{
     title: "Return of the King",
     author: "J.R.R. Tolkien",
     cover: "darkred",
-    text: 'gold'
+    text: 'gold',
+    height: '450px'
 }
 ]
  function getRandomInt(min, max) {
